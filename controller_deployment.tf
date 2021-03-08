@@ -40,6 +40,11 @@ resource "kubernetes_deployment" "controller" {
           "ingress-ready"    = "true"
           "kubernetes.io/os" = "linux"
         }
+        toleration {
+          effect   = "NoSchedule"
+          key      = "node-role.kubernetes.io/master"
+          operator = "Equal"
+        }
         security_context {
           run_as_non_root = true
           run_as_user     = 65534
