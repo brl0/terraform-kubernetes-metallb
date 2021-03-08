@@ -37,6 +37,7 @@ resource "kubernetes_deployment" "controller" {
         service_account_name             = "controller"
         termination_grace_period_seconds = 0
         node_selector = {
+          "ingress-ready"    = "true"
           "kubernetes.io/os" = "linux"
         }
         security_context {
